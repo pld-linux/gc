@@ -2,7 +2,7 @@ Summary:	Conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
 Version:	6.0
-Release:	1
+Release:	2
 License:	BSD like
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
@@ -70,6 +70,7 @@ Statyczna wersja biblioteki gc
 %setup -q -n %{name}%{version}
 
 %build
+cp -f /usr/share/automake/config.* .
 %configure2_13
 %{__make}
 
