@@ -1,12 +1,12 @@
 Summary:	Conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
-Version:	6.1
-Release:	3
+Version:	6.2
+Release:	1
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
-# Source0-md5: 00a87b68f4baa21c56fa42d811e98f7c
+# Source0-md5:	15492b14ca7b9a9e035238611e9cd1e3
 Patch0:		%{name}-ac_libdl_fix.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf
