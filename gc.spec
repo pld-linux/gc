@@ -87,8 +87,7 @@ cp doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 gzip -9nf README.QUICK \
 	doc/README{,.{linux,changes,contributors,environment,macros}}
 
-%post -p /sbin/ldconfig
-
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
