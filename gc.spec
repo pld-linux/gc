@@ -2,7 +2,7 @@ Summary:	Conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
 Version:	6.2
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
@@ -68,8 +68,10 @@ rm -f acinclude.m4
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_includedir}/gc,%{_mandir}/man3}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f include/Makefile*
 cp -ar include/* $RPM_BUILD_ROOT%{_includedir}/gc
 install doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
