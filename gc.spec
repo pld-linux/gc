@@ -6,6 +6,7 @@ Release:	3
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
+# Source0-md5: 00a87b68f4baa21c56fa42d811e98f7c
 Patch0:		%{name}-ac_libdl_fix.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf
