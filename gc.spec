@@ -30,7 +30,7 @@ konserwatywnego od¶miecacza pamiêci w odpowiednich miejscach.
 Summary:	Headers for conservative garbage collector
 Summary(pl):	Nag³ówki dla konserwatywnego od¶miecacza pamiêci
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Headers for conservative garbage collector
@@ -42,7 +42,7 @@ Nag³ówki dla konserwatywnego od¶miecacza pamiêci
 Summary:	Static version of gc library
 Summary(pl):	Statyczna wersja biblioteki gc
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of gc library
@@ -89,10 +89,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/gc
-%{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/*.la
-%{_mandir}/*/*
+%{_includedir}/gc
+%{_mandir}/man3/gc.3*
 
 %files static
 %defattr(644,root,root,755)
