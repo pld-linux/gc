@@ -2,7 +2,7 @@ Summary:	Conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
 Version:	6.4
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
@@ -73,7 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
+install -d $RPM_BUILD_ROOT%{_includedir}/gc/private
+install include/private/* $RPM_BUILD_ROOT%{_includedir}/gc/private/
 install -D doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
 %clean
