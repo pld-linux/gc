@@ -7,7 +7,9 @@ License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
+BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,22 +52,22 @@ Statyczna wersja biblioteki gc
 %setup -q -n %{name}%{version}
 
 %build
-cp -f /usr/share/automake/config.* .
-%configure2_13 \
+rm -f acinclude.m4
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+%configure \
 	--enable-threads=posix
-sed -e 's/-lpthread/-lpthread -ldl/' Makefile > Makefile.tmp
-mv -f Makefile.tmp Makefile
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_includedir}/gc,%{_mandir}/man3}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_includedir}/gc
 cp -ar include/* $RPM_BUILD_ROOT%{_includedir}/gc
-
-install -d $RPM_BUILD_ROOT%{_mandir}/man3
 install doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
 %post   -p /sbin/ldconfig
