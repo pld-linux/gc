@@ -23,7 +23,7 @@ garbage collector at appropriate points.
 %description -l pl
 Gc jest konserwatywnym od¶miecaczem pamiêci dla C i C++. Jest u¿ywany
 jako zamiennik dla standardowych funkcji malloc() i free(). GC_malloc
-próbuje odzyskaæ niedostêpna pamiêc automatycznie przez wywo³ywanie
+próbuje odzyskaæ niedostêpna pamiêæ automatycznie przez wywo³ywanie
 konserwatywnego od¶miecacza pamiêci w odpowiednich miejscach.
 
 %package devel
