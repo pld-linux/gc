@@ -7,6 +7,7 @@ License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,7 +65,7 @@ install -d $RPM_BUILD_ROOT%{_includedir}/gc
 cp -ar include/* $RPM_BUILD_ROOT%{_includedir}/gc
 
 install -d $RPM_BUILD_ROOT%{_mandir}/man3
-cp doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
+install doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
