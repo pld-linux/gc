@@ -1,18 +1,19 @@
 Summary:	Conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
-Version:	6.3
+Version:	6.4
 Release:	1
 License:	BSD-like
-Group:		Development/Libraries
+Group:		Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
-# Source0-md5:	8b37ee18cbeb1dfd1866958e280db871
-Patch0:		%{name}-ac_libdl_fix.patch
+# Source0-md5:	ef03495e980b834a99c0e27eedaa546e
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_includedir	%{_prefix}/include/gc
 
 %description
 Gc is a conservative garbage collector for C and C++. It is used as a
@@ -52,9 +53,11 @@ Statyczna wersja biblioteki gc
 
 %prep
 %setup -q -n %{name}%{version}
-%patch0 -p1
 
+# kill libtool.m4 inclusion
 %{__perl} -pi -e 's/^sinclude.*//' acinclude.m4
+
+%{__perl} -pi -e 's/^dist_pkgdata_DATA/EXTRA_DIST/' doc/Makefile.am
 
 %build
 %{__libtoolize}
@@ -67,14 +70,11 @@ Statyczna wersja biblioteki gc
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_includedir}/gc,%{_mandir}/man3}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f include/Makefile*
-cp -ar include/* $RPM_BUILD_ROOT%{_includedir}/gc
-install doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
+install -D doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -86,15 +86,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
 %doc doc/*.html
-%attr(755,root,root) %{_libdir}/*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
-%{_includedir}/gc
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
+%{_includedir}
 %{_mandir}/man3/gc.3*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/lib*.a
