@@ -1,0 +1,12 @@
+--- gc6.1/configure.in~	Tue May 20 02:07:49 2003
++++ gc6.1/configure.in	Tue May 20 02:07:49 2003
+@@ -172,8 +172,7 @@
+ esac
+ AC_SUBST(THREADLIBS)
+ 
+-AC_CHECK_LIB(dl, dlopen, EXTRA_TEST_LIBS="$EXTRA_TEST_LIBS -ldl")
+-AC_SUBST(EXTRA_TEST_LIBS)
++AC_CHECK_LIB(dl, dlopen, LIBS="$LIBS -ldl")
+ 
+ target_all=libgc.la
+ AC_SUBST(target_all)
