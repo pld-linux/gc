@@ -2,7 +2,7 @@ Summary:	Conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
 Version:	6.0
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
@@ -51,6 +51,8 @@ Statyczna wersja biblioteki gc
 %build
 cp -f /usr/share/automake/config.* .
 %configure2_13
+sed -e 's/-lpthread/& -ldl/' Makefile > Makefile.tmp
+mv -f Makefile.tmp Makefile
 %{__make}
 
 %install
@@ -64,9 +66,6 @@ cp -ar include/* $RPM_BUILD_ROOT%{_includedir}/gc
 install -d $RPM_BUILD_ROOT%{_mandir}/man3
 cp doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
-gzip -9nf README.QUICK \
-	doc/README{,.{linux,changes,contributors,environment,macros}}
-
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -75,7 +74,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz doc/*.gz doc/*.html
+%doc README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
+%doc doc/*.html
 %attr(755,root,root) %{_libdir}/*.so.*.*
 
 %files devel
