@@ -54,8 +54,9 @@ Statyczna wersja biblioteki gc
 %setup -q -n %{name}%{version}
 %patch0 -p1
 
+%{__perl} -pi -e 's/^sinclude.*//' acinclude.m4
+
 %build
-rm -f acinclude.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -75,11 +76,11 @@ rm -f include/Makefile*
 cp -ar include/* $RPM_BUILD_ROOT%{_includedir}/gc
 install doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
