@@ -3,7 +3,7 @@ Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
 Version:	6.0
 Release:	2
-License:	BSD like
+License:	BSDish
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
