@@ -53,7 +53,7 @@ Statyczna wersja biblioteki gc
 cp -f /usr/share/automake/config.* .
 %configure2_13 \
 	--enable-threads=posix
-sed -e 's/-lpthread/& -ldl/' Makefile > Makefile.tmp
+sed -e 's/-lpthread/-lpthread -ldl/' Makefile > Makefile.tmp
 mv -f Makefile.tmp Makefile
 %{__make}
 
