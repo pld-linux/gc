@@ -6,6 +6,7 @@ Release:	3
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
+Patch0:		%{name}-ac_libdl_fix.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,6 +51,7 @@ Statyczna wersja biblioteki gc
 
 %prep
 %setup -q -n %{name}%{version}
+%patch0 -p1
 
 %build
 rm -f acinclude.m4
