@@ -65,6 +65,7 @@ Statyczna wersja biblioteki gc
 %{__autoconf}
 %{__automake}
 %configure \
+	CPPFLAGS="-DUSE_LIBC_PRIVATES" \
 	--enable-threads=posix
 %{__make}
 
