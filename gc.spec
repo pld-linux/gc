@@ -1,4 +1,4 @@
-Summary:	Conservative garbage collector
+Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl):	Konserwatywny od¶miecacz pamiêci
 Name:		gc
 Version:	6.8
