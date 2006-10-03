@@ -1,5 +1,5 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
-Summary(pl):	Konserwatywny od¶miecacz pamiêci
+Summary(pl):	Konserwatywny od¶miecacz pamiêci Boehma-Demersa-Weisera
 Name:		gc
 Version:	6.8
 Release:	1
