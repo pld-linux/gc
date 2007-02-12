@@ -1,5 +1,5 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
-Summary(pl):	Konserwatywny od¶miecacz pamiêci Boehma-Demersa-Weisera
+Summary(pl.UTF-8):   Konserwatywny odÅ›miecacz pamiÄ™ci Boehma-Demersa-Weisera
 Name:		gc
 Version:	6.8
 Release:	1
@@ -21,34 +21,34 @@ replacement for standard malloc() and free(). GC_malloc will attempt
 to reclaim inaccessible space automatically by invoking a conservative
 garbage collector at appropriate points.
 
-%description -l pl
-Gc jest konserwatywnym od¶miecaczem pamiêci dla C i C++. Jest u¿ywany
+%description -l pl.UTF-8
+Gc jest konserwatywnym odÅ›miecaczem pamiÄ™ci dla C i C++. Jest uÅ¼ywany
 jako zamiennik dla standardowych funkcji malloc() i free(). GC_malloc
-próbuje odzyskaæ niedostêpna pamiêæ automatycznie przez wywo³ywanie
-konserwatywnego od¶miecacza pamiêci w odpowiednich miejscach.
+prÃ³buje odzyskaÄ‡ niedostÄ™pna pamiÄ™Ä‡ automatycznie przez wywoÅ‚ywanie
+konserwatywnego odÅ›miecacza pamiÄ™ci w odpowiednich miejscach.
 
 %package devel
 Summary:	Headers for conservative garbage collector
-Summary(pl):	Nag³ówki dla konserwatywnego od¶miecacza pamiêci
+Summary(pl.UTF-8):   NagÅ‚Ã³wki dla konserwatywnego odÅ›miecacza pamiÄ™ci
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Headers for conservative garbage collector
 
-%description devel -l pl
-Nag³ówki dla konserwatywnego od¶miecacza pamiêci
+%description devel -l pl.UTF-8
+NagÅ‚Ã³wki dla konserwatywnego odÅ›miecacza pamiÄ™ci
 
 %package static
 Summary:	Static version of gc library
-Summary(pl):	Statyczna wersja biblioteki gc
+Summary(pl.UTF-8):   Statyczna wersja biblioteki gc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of gc library
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja biblioteki gc
 
 %prep
