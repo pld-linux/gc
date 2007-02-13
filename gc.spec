@@ -1,5 +1,5 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
-Summary(pl.UTF-8):   Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
+Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
 Version:	6.8
 Release:	1
@@ -29,7 +29,7 @@ konserwatywnego odśmiecacza pamięci w odpowiednich miejscach.
 
 %package devel
 Summary:	Headers for conservative garbage collector
-Summary(pl.UTF-8):   Nagłówki dla konserwatywnego odśmiecacza pamięci
+Summary(pl.UTF-8):	Nagłówki dla konserwatywnego odśmiecacza pamięci
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -41,7 +41,7 @@ Nagłówki dla konserwatywnego odśmiecacza pamięci
 
 %package static
 Summary:	Static version of gc library
-Summary(pl.UTF-8):   Statyczna wersja biblioteki gc
+Summary(pl.UTF-8):	Statyczna wersja biblioteki gc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
