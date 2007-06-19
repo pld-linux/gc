@@ -65,7 +65,9 @@ Statyczna wersja biblioteki gc
 %{__autoconf}
 %{__automake}
 %configure \
+%ifnarch sparc64
 	CPPFLAGS="-DUSE_LIBC_PRIVATES" \
+%endif
 	--enable-threads=posix
 %{__make}
 
