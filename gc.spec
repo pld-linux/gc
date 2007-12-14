@@ -1,19 +1,17 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	6.8
-Release:	2
+Version:	7.0
+Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}%{version}.tar.gz
-# Source0-md5:	418d38bd9c66398386a372ec0435250e
+Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}-%{version}.tar.gz
+# Source0-md5:	3645ccf5f32ebb27d99b27b0d29e9c38
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_includedir	%{_prefix}/include/gc
 
 %description
 Gc is a conservative garbage collector for C and C++. It is used as a
@@ -52,12 +50,12 @@ Static version of gc library
 Statyczna wersja biblioteki gc
 
 %prep
-%setup -q -n %{name}%{version}
+%setup -q
 
 # kill libtool.m4 inclusion
 %{__perl} -pi -e 's/^sinclude.*//' acinclude.m4
 
-%{__perl} -pi -e 's/^dist_pkgdata_DATA/EXTRA_DIST/' doc/Makefile.am
+%{__perl} -pi -e 's/^dist_pkgdata_DATA/EXTRA_DIST/' doc/doc.am
 
 %build
 %{__libtoolize}
@@ -78,8 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_includedir}/gc/private
-install include/private/* $RPM_BUILD_ROOT%{_includedir}/gc/private
 install -D doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
+# are these still needed? (what is ecls?)
+install include/private/* $RPM_BUILD_ROOT%{_includedir}/gc/private
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,15 +90,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
 %doc doc/*.html
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcord.so.*.*.*
+%attr(755,root,root) %{_libdir}/libgc.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcord.so.1
+%attr(755,root,root) %ghost %{_libdir}/libgc.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}
+%attr(755,root,root) %{_libdir}/libcord.so
+%attr(755,root,root) %{_libdir}/libgc.so
+%{_libdir}/libcord.la
+%{_libdir}/libgc.la
+%{_includedir}/gc
+%{_pkgconfigdir}/bdw-gc.pc
 %{_mandir}/man3/gc.3*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libcord.a
+%{_libdir}/libgc.a
