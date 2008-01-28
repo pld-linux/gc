@@ -1,0 +1,12 @@
+--- gc-7.0/configure.ac.orig	2008-01-28 13:43:25.000000000 +0000
++++ gc-7.0/configure.ac	2008-01-28 13:44:30.000000000 +0000
+@@ -392,6 +392,9 @@
+     dnl This is now redundant, but it is also important for incremental GC
+     dnl performance under Irix.
+     ;;
++ sparc*-*-linux*) 
++    machdep="mach_dep.lo sparc_mach_dep.lo"
++    ;; 
+  sparc-*-netbsd*)
+     machdep="mach_dep.lo sparc_netbsd_mach_dep.lo"
+     ;;
