@@ -11,6 +11,7 @@ Patch0:		%{name}-sparc.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
+BuildRequires:	libatomic_ops
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
