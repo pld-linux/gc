@@ -2,12 +2,13 @@ Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
 Version:	7.0
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}-%{version}.tar.gz
 # Source0-md5:	3645ccf5f32ebb27d99b27b0d29e9c38
 Patch0:		%{name}-sparc.patch
+Patch1:		%{name}-malloc-segv.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -54,6 +55,7 @@ Statyczna wersja biblioteki gc
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # kill libtool.m4 inclusion
 %{__perl} -pi -e 's/^sinclude.*//' acinclude.m4
