@@ -10,14 +10,14 @@
   sparc-*-netbsd*)
      machdep="mach_dep.lo sparc_netbsd_mach_dep.lo"
      ;;
---- gc-7.0/mach_dep.c.orig	2008-01-30 14:46:14.000000000 +0000
-+++ gc-7.0/mach_dep.c	2008-01-30 14:48:51.000000000 +0000
-@@ -174,7 +174,7 @@
- 
+--- gc-7.1/mach_dep.c.orig	2007-08-13 23:49:11.000000000 +0200
++++ gc-7.1/mach_dep.c	2008-05-28 23:35:02.259767061 +0200
+@@ -175,7 +175,7 @@
  #   if defined(HAVE_PUSH_REGS)
        GC_push_regs();
--#   elif defined(UNIX_LIKE) && !defined(DARWIN) && !defined(ARM32)
-+#   elif defined(UNIX_LIKE) && !defined(DARWIN) && !defined(ARM32) && !(defined(SPARC) && !defined(__arch64__))
+ #   elif defined(UNIX_LIKE) && !defined(DARWIN) && !defined(ARM32) && \
+-	 !defined(HURD)
++	 !defined(HURD) && !(defined(SPARC) && !defined(__arch64__))
        /* Older versions of Darwin seem to lack getcontext(). */
        /* ARM Linux often doesn't support a real getcontext(). */
        ucontext_t ctxt;
