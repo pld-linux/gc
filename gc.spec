@@ -32,6 +32,7 @@ Summary:	Headers for conservative garbage collector
 Summary(pl.UTF-8):	Nagłówki dla konserwatywnego odśmiecacza pamięci
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libatomic_ops >= 7.2
 
 %description devel
 Headers for conservative garbage collector
