@@ -1,12 +1,13 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	7.2
+Version:	7.2d
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	d17aecedef3d73e75387fb63558fa4eb
+# Source0-md5:	91340b28c61753a789eb6077675d87d2
+Patch0:	        %{name}-ac.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
@@ -91,7 +92,8 @@ C++ interface to GC library - static library.
 Interfejs C++ do biblioteki GC - biblioteka statyczna.
 
 %prep
-%setup -q
+%setup -q -n %{name}-7.2
+%patch0 -p0
 
 # don't install docs to %{_datadir}/%{name}
 %{__perl} -pi -e 's/^dist_pkgdata_DATA/EXTRA_DIST/' doc/doc.am

@@ -1,0 +1,11 @@
+--- configure.ac~	2012-08-09 21:25:13.000000000 +0100
++++ configure.ac	2013-04-18 01:34:47.007548555 +0100
+@@ -26,7 +26,7 @@
+ AC_REVISION($Revision: 1.69 $)
+ GC_SET_VERSION
+ AM_INIT_AUTOMAKE([foreign dist-bzip2 nostdinc])
+-AM_CONFIG_HEADER([include/private/config.h])
++AC_CONFIG_HEADER([include/private/config.h])
+ AM_MAINTAINER_MODE
+ 
+ AC_SUBST(PACKAGE)
