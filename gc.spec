@@ -1,17 +1,18 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	7.2d
+# NOTE: 7.4.0 is considered experimental (as of Nov 2013)
+Version:	7.2e
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	91340b28c61753a789eb6077675d87d2
+# Source0-md5:	5e230029f802d0ac633b1d9b3d4934c9
 Patch0:	        %{name}-ac.patch
 URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
-BuildRequires:	libatomic_ops >= 7.2
+BuildRequires:	libatomic_ops >= 7.2e
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -33,7 +34,7 @@ Summary:	Headers for conservative garbage collector
 Summary(pl.UTF-8):	Nagłówki dla konserwatywnego odśmiecacza pamięci
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libatomic_ops >= 7.2
+Requires:	libatomic_ops >= 7.2e
 
 %description devel
 Headers for conservative garbage collector
