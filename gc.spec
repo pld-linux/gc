@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
 # NOTE: 7.4.0 is considered experimental (as of Nov 2013)
 Version:	7.2e
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}-%{version}.tar.gz
@@ -119,9 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_includedir}/gc/private
-install -D doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
+install -D -p doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 # are these still needed? (what is ecls?)
-install include/private/* $RPM_BUILD_ROOT%{_includedir}/gc/private
+cp -a include/private/* $RPM_BUILD_ROOT%{_includedir}/gc/private
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -134,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}} doc/*.html
+%doc README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
 %attr(755,root,root) %{_libdir}/libcord.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcord.so.1
 %attr(755,root,root) %{_libdir}/libgc.so.*.*.*
@@ -142,6 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc doc/*.html
 %attr(755,root,root) %{_libdir}/libcord.so
 %attr(755,root,root) %{_libdir}/libgc.so
 %{_libdir}/libcord.la
