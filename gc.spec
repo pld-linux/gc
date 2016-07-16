@@ -1,18 +1,18 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-# NOTE: 7.4.0 is considered experimental (as of Nov 2013)
-Version:	7.2e
-Release:	3
+# NOTE: 7.4.x is considered experimental (as of Nov 2013)
+Version:	7.2g
+Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	5e230029f802d0ac633b1d9b3d4934c9
+Source0:	http://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
+# Source0-md5:	6f77f9fff5fb5bf96adfc1e93cd035b6
 Patch0:	        %{name}-ac.patch
-URL:		http://www.hpl.hp.com/personal/Hans_Boehm/gc/
+URL:		http://www.hboehm.info/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
-BuildRequires:	libatomic_ops >= 7.2e
+BuildRequires:	libatomic_ops >= 7.2g
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -94,7 +94,7 @@ Interfejs C++ do biblioteki GC - biblioteka statyczna.
 
 %prep
 %setup -q -n %{name}-7.2
-%patch0 -p0
+%patch0 -p1
 
 # don't install docs to %{_datadir}/%{name}
 %{__perl} -pi -e 's/^dist_pkgdata_DATA/EXTRA_DIST/' doc/doc.am
@@ -134,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
+%doc ChangeLog README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
 %attr(755,root,root) %{_libdir}/libcord.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcord.so.1
 %attr(755,root,root) %{_libdir}/libgc.so.*.*.*
@@ -150,6 +150,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_includedir}/gc
 %{_includedir}/gc/private
 %{_includedir}/gc/cord.h
+%{_includedir}/gc/cord_pos.h
+%{_includedir}/gc/ec.h
 %{_includedir}/gc/gc.h
 %{_includedir}/gc/gc_allocator.h
 %{_includedir}/gc/gc_amiga_redirects.h
