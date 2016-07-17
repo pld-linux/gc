@@ -1,20 +1,19 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-# NOTE: 7.4.x is considered experimental (as of Nov 2013)
-Version:	7.2g
+Version:	7.4.4
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	6f77f9fff5fb5bf96adfc1e93cd035b6
-Patch0:	        %{name}-ac.patch
+# Source0-md5:	96d18b0448a841c88d56e4ab3d180297
 URL:		http://www.hboehm.info/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
-BuildRequires:	libatomic_ops >= 7.2g
+BuildRequires:	libatomic_ops-devel >= %{version}
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool >= 2:1.5
+BuildRequires:	libtool >= 2:2
+Requires:	libatomic_ops >= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -34,7 +33,7 @@ Summary:	Headers for conservative garbage collector
 Summary(pl.UTF-8):	Nagłówki dla konserwatywnego odśmiecacza pamięci
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libatomic_ops >= 7.2e
+Requires:	libatomic_ops-devel >= %{version}
 
 %description devel
 Headers for conservative garbage collector
@@ -93,8 +92,7 @@ C++ interface to GC library - static library.
 Interfejs C++ do biblioteki GC - biblioteka statyczna.
 
 %prep
-%setup -q -n %{name}-7.2
-%patch0 -p1
+%setup -q
 
 # don't install docs to %{_datadir}/%{name}
 %{__perl} -pi -e 's/^dist_pkgdata_DATA/EXTRA_DIST/' doc/doc.am
@@ -106,10 +104,11 @@ Interfejs C++ do biblioteki GC - biblioteka statyczna.
 %{__automake}
 %configure \
 %ifnarch sparc64
-	CPPFLAGS="-DUSE_LIBC_PRIVATES" \
+	CPPFLAGS="%{rpmcppflags} -DUSE_LIBC_PRIVATES" \
 %endif
 	--enable-cplusplus \
-	--enable-threads=posix
+	--enable-threads=posix \
+	--with-libatomic-ops
 %{__make}
 
 %install
@@ -134,7 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README.QUICK doc/README{,.{linux,changes,contributors,environment,macros}}
+%doc AUTHORS ChangeLog README.QUICK README.md doc/README.{cords,environment,linux,macros}
 %attr(755,root,root) %{_libdir}/libcord.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcord.so.1
 %attr(755,root,root) %{_libdir}/libgc.so.*.*.*
@@ -154,9 +153,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gc/ec.h
 %{_includedir}/gc/gc.h
 %{_includedir}/gc/gc_allocator.h
-%{_includedir}/gc/gc_amiga_redirects.h
 %{_includedir}/gc/gc_backptr.h
 %{_includedir}/gc/gc_config_macros.h
+%{_includedir}/gc/gc_disclaim.h
 %{_includedir}/gc/gc_gcj.h
 %{_includedir}/gc/gc_inline.h
 %{_includedir}/gc/gc_mark.h
@@ -164,8 +163,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gc/gc_tiny_fl.h
 %{_includedir}/gc/gc_typed.h
 %{_includedir}/gc/gc_version.h
+%{_includedir}/gc/javaxfc.h
 %{_includedir}/gc/leak_detector.h
-%{_includedir}/gc/new_gc_alloc.h
 %{_includedir}/gc/weakpointer.h
 %{_includedir}/gc.h
 %{_pkgconfigdir}/bdw-gc.pc
