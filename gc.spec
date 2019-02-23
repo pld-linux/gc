@@ -1,19 +1,31 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static libraries
+%bcond_with	libatomic_ops	# use libatomic_ops instead of intrinsics
+
+%ifarch i386 i486
+%define	with_libatomic_ops	1
+%endif
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	7.6.0
+Version:	8.0.2
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	bf46ccbdaccfa3186c2ab87191c8855a
+# Source0-md5:	0c3e5a2de567a4f199dc07740bbf21d1
 URL:		http://www.hboehm.info/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
+%if %{with libatomic_ops}
 BuildRequires:	libatomic_ops-devel >= 7.4.4
+%endif
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
+%if %{with libatomic_ops}
 Requires:	libatomic_ops >= 7.4.4
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,7 +45,9 @@ Summary:	Headers for conservative garbage collector
 Summary(pl.UTF-8):	Nagłówki dla konserwatywnego odśmiecacza pamięci
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%if %{with libatomic_ops}
 Requires:	libatomic_ops-devel >= 7.4.4
+%endif
 
 %description devel
 Headers for conservative garbage collector
@@ -107,6 +121,7 @@ Interfejs C++ do biblioteki GC - biblioteka statyczna.
 	CPPFLAGS="%{rpmcppflags} -DUSE_LIBC_PRIVATES" \
 %endif
 	--enable-cplusplus \
+	%{?with_static_libs:--enable-static} \
 	--enable-threads=posix \
 	--with-libatomic-ops
 %{__make}
@@ -117,10 +132,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_includedir}/gc/private
-install -D -p doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
-# are these still needed? (what is ecls?)
-cp -a include/private/* $RPM_BUILD_ROOT%{_includedir}/gc/private
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/gc
+#install -D -p doc/gc.man $RPM_BUILD_ROOT%{_mandir}/man3/gc.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -141,13 +155,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/*.html
+%doc doc/*.md
 %attr(755,root,root) %{_libdir}/libcord.so
 %attr(755,root,root) %{_libdir}/libgc.so
 %{_libdir}/libcord.la
 %{_libdir}/libgc.la
 %dir %{_includedir}/gc
-%{_includedir}/gc/private
 %{_includedir}/gc/cord.h
 %{_includedir}/gc/cord_pos.h
 %{_includedir}/gc/ec.h
@@ -165,7 +178,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gc/gc_version.h
 %{_includedir}/gc/javaxfc.h
 %{_includedir}/gc/leak_detector.h
-%{_includedir}/gc/weakpointer.h
 %{_includedir}/gc.h
 %{_pkgconfigdir}/bdw-gc.pc
 %{_mandir}/man3/gc.3*
