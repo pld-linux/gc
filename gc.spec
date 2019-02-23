@@ -1,13 +1,13 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	7.6.0
+Version:	7.6.10
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	bf46ccbdaccfa3186c2ab87191c8855a
-URL:		http://www.hboehm.info/gc/
+Source0:	https://github.com/ivmai/bdwgc/releases/download/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	28bf15c7a5618715877a451f2721586c
+URL:		https://www.hboehm.info/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
 BuildRequires:	libatomic_ops-devel >= 7.4.4
