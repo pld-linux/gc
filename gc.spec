@@ -10,7 +10,7 @@ Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
 Version:	8.0.4
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
@@ -123,7 +123,7 @@ Interfejs C++ do biblioteki GC - biblioteka statyczna.
 	--enable-cplusplus \
 	%{?with_static_libs:--enable-static} \
 	--enable-threads=posix \
-	--with-libatomic-ops
+	--with-libatomic-ops%{!?with_libatomic_ops:=check}
 %{__make}
 
 %install
