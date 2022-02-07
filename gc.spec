@@ -9,13 +9,13 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	8.0.4
-Release:	2
+Version:	8.2.0
+Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	67a5093e2f9f381bd550aa891d00b54b
-URL:		http://www.hboehm.info/gc/
+Source0:	https://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
+# Source0-md5:	c3c04af9c1e4209e315eee50efe7b320
+URL:		https://www.hboehm.info/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
 %if %{with libatomic_ops}
@@ -191,14 +191,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgccpp.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgccpp.so.1
+%attr(755,root,root) %{_libdir}/libgctba.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgctba.so.1
 
 %files c++-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgccpp.so
+%attr(755,root,root) %{_libdir}/libgctba.so
 %{_libdir}/libgccpp.la
+%{_libdir}/libgctba.la
 %{_includedir}/gc/gc_cpp.h
 %{_includedir}/gc_cpp.h
 
 %files c++-static
 %defattr(644,root,root,755)
 %{_libdir}/libgccpp.a
+%{_libdir}/libgctba.a
