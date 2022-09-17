@@ -9,12 +9,12 @@
 Summary:	The Boehm-Demers-Weiser conservative garbage collector
 Summary(pl.UTF-8):	Konserwatywny odśmiecacz pamięci Boehma-Demersa-Weisera
 Name:		gc
-Version:	8.2.0
+Version:	8.2.2
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://www.hboehm.info/gc/gc_source/%{name}-%{version}.tar.gz
-# Source0-md5:	c3c04af9c1e4209e315eee50efe7b320
+# Source0-md5:	787177b1b15aa19ffa0d61d8f508b69d
 URL:		https://www.hboehm.info/gc/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
